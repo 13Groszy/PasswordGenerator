@@ -8,16 +8,26 @@ body{
     margin:auto;
     margin-top:5rem;
 }
-h2{
-    font-size: 1.2rem;
-    margin-block:1rem;
-}
 p{
     margin-top:1rem;
 }
-#badPassword{
-    color:red;
-}
 #returnedPassword{
     color:green;
+}
+select{
+    margin-block: 1rem;;
+}
+.inputWrapper{
+    display: flex;
+    justify-content: space-between;
+    margin-block: 0.5rem;
+}
+button{
+    padding:.7rem;
+    width:5rem;
+    border-radius: 2rem;
+    border: none;
+    background-color: #999;
+    box-shadow: 3px 3px 0.5rem black;
+    color: white;
 }

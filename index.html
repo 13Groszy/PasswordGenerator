@@ -9,14 +9,69 @@
 </head>
 <body>
     <h1>Password Generator</h1>
-    <h2>Type the number from 6 to 40</h2>
-    <div class="inputWrapper">
-        <label for="passwordLength"></label>
-        <input type="number" name="passwordLength" id="passwordLength">
+        <label for="passwordLength">Password Length:</label>
+        <select name="passwordLength" id="passwordLength">
+            <optgroup label="Weak">
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <optionvalue="10">10</option>
+            </optgroup>
+            <optgroup label="Medium">
+                <option value="11">11</option>
+                <option selected="selected" value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+            </optgroup>
+            <optgroup label="Strong">
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+                <option value="24">24</option>
+                <option value="25">25</option>
+                <option value="26">26</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="30">30</option>
+                <option value="31">31</option>
+                <option value="32">32</option>
+                <option value="33">33</option>
+                <option value="34">34</option>
+                <option value="35">35</option>
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+            </optgroup>
+        </select>
+        <div class="inputWrapper">
+            <label for="numbers">Include Numbers (0-9):</label>
+            <input type="checkbox" name="numbers" id="numbers" checked>
+        </div>
+        <div class="inputWrapper">
+            <label for="lowercase">Include Lowercase Chars (xyz):</label>
+            <input type="checkbox" name="lowercase" id="lowercase" checked>
+        </div>
+        <div class="inputWrapper">
+            <label for="uppercase">Include Uppercase Chars (XYZ):</label>
+            <input type="checkbox" name="uppercase" id="uppercase" checked>
+        </div>
+        <div class="inputWrapper">
+            <label for="symbols">Include Symbols (!@#):</label>
+            <input type="checkbox" name="symbols" id="symbols">
+        </div>
+
         <button onclick="createPassword()">Submit</button>
-        <p id="badPassword"></p>
         <p id="returnedPassword"></p>
-    </div>
     <script src="/app.js"></script>
 </body>
 </html>
