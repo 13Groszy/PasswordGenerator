@@ -21,7 +21,7 @@ createPassword = () =>{
       );
 
     let base = [];
-    
+
     base = [
         formResults.numbers ? base + numbers : '',
         formResults.lowercase ? base + lowercase : '',
@@ -29,7 +29,8 @@ createPassword = () =>{
         formResults.symbols ? base + symbols : ''
     ]
     const filledBase = base[0]+base[1]+base[2]+base[3];
-    
+    // I may come back to that and try base.push()
+
     const password = new Array(parseInt(passwordLength))
         .fill(null)
         .map(() => filledBase[Math.floor(Math.random() * filledBase.length)])
