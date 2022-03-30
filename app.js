@@ -1,66 +1,42 @@
-const value = document.getElementById('passwordLength');
-const password = document.getElementById('returnedPassword');
-const badPassword = document.getElementById('badPassword');
-const selectOption = document.querySelector('select')
-const number = document.querySelector("#numbers")
-const lowCase = document.querySelector("#lowercase")
-const uppCase = document.querySelector("#uppercase")
-const symbol = document.querySelector("#symbols")
+let numbers = "0123456789";
+let lowercase = "abcdefghijklmnopqrstuvwxyz";
+let uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+let symbols = "!@#$%^&*";
 
-createPassword = () => {
+const returnedPassword = document.querySelector('.returnedPassword');
 
-    let base = "";
-    let numbers = "0123456789";
-    let lowercase = "abcdefghijklmnopqrstuvwxyz";
-    let uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    let symbols = "!@#$%^&*";
+createPassword = () =>{
 
-    if (number.checked === true) {
-        base += numbers;
-    }
-    if (lowCase.checked === true) {
-        base += lowercase;
-    }
-    if (uppCase.checked === true) {
-        base += uppercase;
-    }
-    if (symbol.checked === true) {
-        base += symbols;
-    }
+    
+    const form = document.querySelector('#inputForm');
+    const formData = new FormData(form);
+    const searchParams = new URLSearchParams(formData);
+    const passwordLength = document.querySelector('select').value;
 
-    // Switch work for one case selected, for mutiple doesn't - TO DO
-    // switch (true) {
-    //     case number.checked === true:
-    //         base = base+numbers;
-    //         console.log(base);
-    //         break;
-    //     case lowCase.checked === true:
-    //         base = base+lowercase;
-    //         console.log(base);
-    //         break;
-    //     case uppCase.checked === true:
-    //         base = base+uppercase;
-    //         console.log(base);
-    //         break;
-    //     case symbol.checked === true:
-    //         base = base+symbols;
-    //         console.log(base);
-    //         break;
-    //     default:
-    //         console.log(base);
-    //         break;
-    // }
+    const formResults = [...searchParams.entries()].reduce(
+        (result, [key, value]) => ({
+          ...result,
+          [key]: value,
+        }), {}
+      );
 
-    let passwordLength = selectOption.value;
-    let returnedPassword = "";
+    let base = [];
+    
+    base = [
+        formResults.numbers ? base + numbers : '',
+        formResults.lowercase ? base + lowercase : '',
+        formResults.uppercase ? base + uppercase : '',
+        formResults.symbols ? base + symbols : ''
+    ]
+    const filledBase = base[0]+base[1]+base[2]+base[3];
+    
+    const password = new Array(parseInt(passwordLength))
+        .fill(null)
+        .map(() => filledBase[Math.floor(Math.random() * filledBase.length)])
+        .join('')
+        console.log(password)
+    returnedPassword.innerHTML = `Your password: ${password}`
 
-        if (base === "") {
-            password.innerHTML = ' Select at least one option please'
-        } else {
-            for (let i = 0, charLength = base.length; i < passwordLength; i++) {
-                returnedPassword += base.charAt(Math.floor(Math.random() * charLength))
-            }
-            return password.innerHTML = `Your password: ${returnedPassword}`
-        }
-
+    password == [null] ? (returnedPassword.innerHTML = `Select at least one option please`) : ''
 }
+

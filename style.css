@@ -11,7 +11,7 @@ body{
 p{
     margin-top:1rem;
 }
-#returnedPassword{
+.returnedPassword{
     color:green;
 }
 select{

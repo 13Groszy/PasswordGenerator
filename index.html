@@ -53,25 +53,26 @@
                 <option value="40">40</option>
             </optgroup>
         </select>
-        <div class="inputWrapper">
-            <label for="numbers">Include Numbers (0-9):</label>
-            <input type="checkbox" name="numbers" id="numbers" checked>
-        </div>
-        <div class="inputWrapper">
-            <label for="lowercase">Include Lowercase Chars (xyz):</label>
-            <input type="checkbox" name="lowercase" id="lowercase" checked>
-        </div>
-        <div class="inputWrapper">
-            <label for="uppercase">Include Uppercase Chars (XYZ):</label>
-            <input type="checkbox" name="uppercase" id="uppercase" checked>
-        </div>
-        <div class="inputWrapper">
-            <label for="symbols">Include Symbols (!@#):</label>
-            <input type="checkbox" name="symbols" id="symbols">
-        </div>
-
+        <form id="inputForm">
+            <div class="inputWrapper">
+                <label for="numbers">Include Numbers (0-9):</label>
+                <input type="checkbox" name="numbers" id="numbers" checked>
+            </div>
+            <div class="inputWrapper">
+                <label for="lowercase">Include Lowercase Chars (xyz):</label>
+                <input type="checkbox" name="lowercase" id="lowercase" checked>
+            </div>
+            <div class="inputWrapper">
+                <label for="uppercase">Include Uppercase Chars (XYZ):</label>
+                <input type="checkbox" name="uppercase" id="uppercase" checked>
+            </div>
+            <div class="inputWrapper">
+                <label for="symbols">Include Symbols (!@#):</label>
+                <input type="checkbox" name="symbols" id="symbols">
+            </div>
+        </form>
         <button onclick="createPassword()">Submit</button>
-        <p id="returnedPassword"></p>
+        <p class="returnedPassword"></p>
     <script src="/app.js"></script>
 </body>
 </html>
