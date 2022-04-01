@@ -23,6 +23,11 @@ var lowercase = "abcdefghijklmnopqrstuvwxyz";
 var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 var symbols = "!@#$%^&*";
 var returnedPassword = document.querySelector('.returnedPassword');
+var copyBtnWrapper = document.querySelector('.buttonsWrapper');
+var copyBtn = document.createElement('button');
+copyBtn.setAttribute('onclick', 'copyPassword()');
+copyBtn.innerHTML = "Click to copy";
+var passedVal = {};
 var createPassword = function () {
     var form = document.querySelector('#inputForm');
     var formData = new FormData(form);
@@ -39,5 +44,25 @@ var createPassword = function () {
         .fill(null)
         .map(function () { return base[Math.floor(Math.random() * base.length)]; })
         .join('');
-    password == [null] ? (returnedPassword.innerHTML = "Select at least one option please") : (returnedPassword.innerHTML = "Your password: ".concat(password));
+    password == [null] ? (returnedPassword.innerHTML = "Select at least one option please") : (returnedPassword.innerHTML = "Your password: ".concat(password)) && (copyBtnWrapper.appendChild(copyBtn));
+    passedVal = password;
+    return passedVal;
+};
+var copyPassword = function () {
+    //This function may use other function which use navigator.clipboard to copy password to clipboard, but it's not supported by all browsers, so I use fallback straight away.
+    // const copyToClipboard = passedVal => {
+    //   (navigator && navigator.clipboard && navigator.clipboard.writeText) ? navigator.clipboard.writeText(passedVal) : console.log('Password not copied')
+    // };
+    var copyToClipboard = function (passedVal) {
+        var el = document.createElement('textarea');
+        el.value = passedVal;
+        el.setAttribute('readonly', '');
+        el.style.position = 'absolute';
+        el.style.left = '-9999px';
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+    };
+    passedVal == [null] ? copyBtnWrapper.removeChild(copyBtn) : (copyToClipboard(passedVal), alert('You copied your password'));
 };
