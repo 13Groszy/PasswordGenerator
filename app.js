@@ -34,17 +34,10 @@ var createPassword = function () {
         return (__assign(__assign({}, result), (_b = {}, _b[key] = value, _b)));
     }, {});
     var base = [];
-    base = [
-        formResults.numbers ? base + numbers : '',
-        formResults.lowercase ? base + lowercase : '',
-        formResults.uppercase ? base + uppercase : '',
-        formResults.symbols ? base + symbols : ''
-    ];
-    var filledBase = base[0] + base[1] + base[2] + base[3];
-    // I may come back to that and try base.push()
+    base = __spreadArray(__spreadArray(__spreadArray(__spreadArray([], (formResults.numbers ? base + numbers : []), true), (formResults.lowercase ? base + lowercase : []), true), (formResults.uppercase ? base + uppercase : []), true), (formResults.symbols ? base + symbols : []), true);
     var password = new Array(parseInt(passwordLength))
         .fill(null)
-        .map(function () { return filledBase[Math.floor(Math.random() * filledBase.length)]; })
+        .map(function () { return base[Math.floor(Math.random() * base.length)]; })
         .join('');
     password == [null] ? (returnedPassword.innerHTML = "Select at least one option please") : (returnedPassword.innerHTML = "Your password: ".concat(password));
 };
