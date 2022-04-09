@@ -44,6 +44,18 @@ let createPassword = () => {
 }
 
 
+let snackBarFunction = () =>{
+  let snackBar = document.querySelector(".snackBar");
+  
+  snackBar.setAttribute("style", "bottom: 0");
+  //snackBar.style.bottom = "0";
+  let delSnackBar = () =>{
+  //  snackBar.style.bottom ="-100px"
+    snackBar.setAttribute("style", "bottom: -100px");
+  }
+  const myTimeout = setTimeout(delSnackBar, 3000)
+  }
+
 
 let copyPassword = () => {
 
@@ -65,5 +77,5 @@ let copyPassword = () => {
     document.body.removeChild(el);
   };
 
-  passedVal == [null] ? copyBtnWrapper.removeChild(copyBtn) : (copyToClipboard(passedVal), alert('You copied your password'));
+  passedVal == [null] ? copyBtnWrapper.removeChild(copyBtn) : (copyToClipboard(passedVal), snackBarFunction());
 }
