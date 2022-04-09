@@ -48,6 +48,16 @@ var createPassword = function () {
     passedVal = password;
     return passedVal;
 };
+var snackBarFunction = function () {
+    var snackBar = document.querySelector(".snackBar");
+    snackBar.setAttribute("style", "bottom: 0");
+    //snackBar.style.bottom = "0";
+    var delSnackBar = function () {
+        //  snackBar.style.bottom ="-100px"
+        snackBar.setAttribute("style", "bottom: -100px");
+    };
+    var myTimeout = setTimeout(delSnackBar, 3000);
+};
 var copyPassword = function () {
     //This function may use other function which use navigator.clipboard to copy password to clipboard, but it's not supported by all browsers, so I use fallback straight away.
     // const copyToClipboard = passedVal => {
@@ -64,5 +74,5 @@ var copyPassword = function () {
         document.execCommand('copy');
         document.body.removeChild(el);
     };
-    passedVal == [null] ? copyBtnWrapper.removeChild(copyBtn) : (copyToClipboard(passedVal), alert('You copied your password'));
+    passedVal == [null] ? copyBtnWrapper.removeChild(copyBtn) : (copyToClipboard(passedVal), snackBarFunction());
 };
