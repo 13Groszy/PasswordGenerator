@@ -1,6 +1,6 @@
 # Above code you can see there:
 
-https://quote-the-weather.netlify.app
+https://create-new-password.netlify.app
 
 # PasswordGenerator
 
