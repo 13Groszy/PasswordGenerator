@@ -12,9 +12,15 @@ let passedVal = {};
 
 let createPassword = () => {
 
-    const form: any = document.querySelector('#inputForm');
-    const formData: any = new FormData(form);
-    const searchParams = new URLSearchParams(formData);
+    const form: HTMLFormElement = document.querySelector('#inputForm');
+    // const formData: FormData = new FormData(form);
+    const convertedFormEntries = Array.from(
+      new FormData(form),
+      ([key, value]) => (
+        [key, typeof value === 'string' ? value : value.name]
+      ),
+    );
+    const searchParams = new URLSearchParams(convertedFormEntries);
     const passwordLength = document.querySelector('select').value;
 
     const formResults: any = [...searchParams.entries()].reduce(
@@ -24,7 +30,7 @@ let createPassword = () => {
         }), {}
       );
 
-    let base: any = [];
+    let base: String[] = [];
 
     base = [
         ...(formResults.numbers ? base + numbers : []),
@@ -32,13 +38,12 @@ let createPassword = () => {
         ...(formResults.uppercase ? base + uppercase : []),
         ...(formResults.symbols ? base + symbols : [])
     ]
-    const password: any = new Array(parseInt(passwordLength))
+    const password: String = new Array(parseInt(passwordLength))
         .fill(null)
         .map(() => base[Math.floor(Math.random() * base.length)])
         .join('')
+    password == null ? (returnedPassword.innerHTML = `Select at least one option please`) : (returnedPassword.innerHTML = `Your password: ${password}`) && (copyBtnWrapper.appendChild(copyBtn))
 
-    password == [null] ? (returnedPassword.innerHTML = `Select at least one option please`) : (returnedPassword.innerHTML = `Your password: ${password}`) && (copyBtnWrapper.appendChild(copyBtn))
-    
     passedVal = password
     return passedVal
 }
@@ -46,7 +51,7 @@ let createPassword = () => {
 
 let snackBarFunction = () =>{
   let snackBar = document.querySelector(".snackBar");
-  
+
   snackBar.setAttribute("style", "bottom: 0");
   //snackBar.style.bottom = "0";
   let delSnackBar = () =>{
@@ -60,7 +65,7 @@ let snackBarFunction = () =>{
 let copyPassword = () => {
 
   //This function may use other function which use navigator.clipboard to copy password to clipboard, but it's not supported by all browsers, so I use fallback straight away.
-  
+
   // const copyToClipboard = passedVal => {
   //   (navigator && navigator.clipboard && navigator.clipboard.writeText) ? navigator.clipboard.writeText(passedVal) : console.log('Password not copied')
   // };
